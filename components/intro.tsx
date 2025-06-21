@@ -32,7 +32,7 @@ export default function Intro() {
             }}
           >
             <Image
-              src="/chris.JPG"
+              src="/eu.jpg"
               alt="Niyiduhumugisha Eden"
               width="192"
               height="192"
