@@ -64,7 +64,7 @@ export default function Intro() {
         animate={{ opacity: 1, y: 0 }}
       >
         <span className="font-bold">Oi, eu sou o Christofer.</span> Atuo como{" "}
-        <span className="font-bold">desenvolvedor fullstack</span> com{" "}
+        <span className="font-bold">desenvolvedor front-end</span> com{" "}
         <span className="font-bold">1 ano</span> de experiência. Adoro construir{" "}
         <span className="italic">sites e aplicativos</span> e meu maior foco{" "}
         <span className="underline">é criar projetos que facilitem a vida dos usuários</span>.
