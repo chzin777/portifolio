@@ -107,7 +107,7 @@ export const projectsData = [
     description:
       "Página inicial personalizada para navegadores dos computadores da empresa, com links rápidos e design institucional.",
     tags: ["HTML", "CSS"],
-    imageUrl: "https://i.postimg.cc/Y0FhCTBh/Screenshot-2025-07-18-18-01-22.png",
+    imageUrl: "https://i.postimg.cc/wv4PKQg7/imagem-2025-07-18-154853213.png",
     projectUrl: "#",
   },
   {
@@ -125,14 +125,6 @@ export const projectsData = [
     tags: ["HTML", "CSS", "Bootstrap"],
     imageUrl: "https://i.postimg.cc/zBrV1TDS/imagem-2025-07-18-150841699.png",
     projectUrl: "https://chzin777.github.io/fg-transportes/",
-  },
-  {
-    title: "Portfólio Christofer Henrique",
-    description:
-      "Meu portfólio profissional, com timeline, projetos, skills, contato e visual moderno. Desenvolvido 100% em Next.js.",
-    tags: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
-    imageUrl: "https://i.postimg.cc/SQtVmK8Y/Screenshot-2025-07-18-18-31-29.png",
-    projectUrl: "https://portifolio-henna-nu-19.vercel.app",
   },
 ] as const;
 
