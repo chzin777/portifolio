@@ -1,0 +1,16 @@
+# Netlify build configuration
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Redirect rules for Next.js
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for static assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
