@@ -63,11 +63,11 @@ export default function Intro() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <span className="font-bold">Oi, eu sou o Christofer.</span> Atuo como{" "}
-        <span className="font-bold">desenvolvedor front-end</span> com{" "}
-        <span className="font-bold">1 ano</span> de experiência. Adoro construir{" "}
-        <span className="italic">sites e aplicativos</span> e meu maior foco{" "}
-        <span className="underline">é criar projetos que facilitem a vida dos usuários</span>.
+        <span className="font-bold">Oi, eu sou o Christofer.</span> Sou{" "}
+        <span className="font-bold">Analista de Sistemas</span> formado em{" "}
+        <span className="font-bold">Análise e Desenvolvimento de Sistemas</span>. Especializado em{" "}
+        <span className="italic">desenvolvimento web e automação de processos</span>, com foco em{" "}
+        <span className="underline">criar soluções tecnológicas eficientes</span>.
       </motion.h1>
 
       <motion.div

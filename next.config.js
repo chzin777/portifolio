@@ -13,9 +13,6 @@ const nextConfig = {
       // Adicione aqui outros domínios se quiser usar outros servidores de imagem
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
 };
 
 module.exports = nextConfig;

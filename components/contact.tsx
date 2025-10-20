@@ -4,9 +4,6 @@ import React from "react";
 import SectionHeading from "./section-heading";
 import { motion } from "framer-motion";
 import { useSectionInView } from "@/lib/hooks";
-import { sendEmail } from "@/actions/sendEmail";
-import SubmitBtn from "./submit-btn";
-import toast from "react-hot-toast";
 
 export default function Contact() {
   const { ref } = useSectionInView("Contato");
@@ -32,43 +29,33 @@ export default function Contact() {
       <SectionHeading>Contato</SectionHeading>
 
       <p className="text-gray-700 -mt-6 dark:text-white/80">
-        Por favor, me contate diretamente pelo email:{" "}
-        <a className="underline" href="mailto:example@gmail.com">
+        Entre em contato comigo diretamente pelo email:{" "}
+        <a 
+          className="underline hover:text-gray-900 dark:hover:text-white font-medium" 
+          href="mailto:hchristofer130@gmail.com"
+        >
           hchristofer130@gmail.com
-        </a>{" "}
-        ou através deste formulário.
+        </a>
       </p>
 
-      <form
-        className="mt-10 flex flex-col dark:text-black"
-        action={async (formData) => {
-          const { data, error } = await sendEmail(formData);
-
-          if (error) {
-            toast.error(error);
-            return;
-          }
-
-          toast.success("E-mail enviado com sucesso!!");
-        }}
-      >
-        <input
-          className="h-14 px-4 rounded-lg borderBlack dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="senderEmail"
-          type="email"
-          required
-          maxLength={500}
-          placeholder="Seu E-mail"
-        />
-        <textarea
-          className="h-52 my-3 rounded-lg borderBlack p-4 dark:bg-white dark:bg-opacity-80 dark:focus:bg-opacity-100 transition-all dark:outline-none"
-          name="message"
-          placeholder="Sua Mensagem"
-          required
-          maxLength={5000}
-        />
-        <SubmitBtn />
-      </form>
+      <p className="text-gray-700 mt-4 dark:text-white/80">
+        Também me encontre no{" "}
+        <a 
+          className="underline hover:text-gray-900 dark:hover:text-white font-medium" 
+          href="https://www.linkedin.com/in/christofer-henrique-43366725b/" 
+          target="_blank"
+        >
+          LinkedIn
+        </a>{" "}
+        ou no{" "}
+        <a 
+          className="underline hover:text-gray-900 dark:hover:text-white font-medium" 
+          href="https://github.com/chzin777" 
+          target="_blank"
+        >
+          GitHub
+        </a>.
+      </p>
     </motion.section>
   );
 }

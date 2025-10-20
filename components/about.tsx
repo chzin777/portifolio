@@ -19,23 +19,33 @@ export default function About() {
     >
       <SectionHeading>Sobre mim</SectionHeading>
       <p className="mb-3">
-        Desde que comecei meus estudos em{" "}
-        <span className="font-medium">Análise e Desenvolvimento de Sistemas</span>,
-        me apaixonei por tecnologia e desenvolvimento de software.
-        Tenho aprimorado minhas habilidades através de diversos cursos, incluindo{" "}
-        <span className="font-medium">FreeCodeCamp</span> e projetos práticos.
-        O que mais me motiva na programação é o{" "}
-        <span className="italic">desafio de resolver problemas</span>.
-        Eu <span className="underline">gosto</span> da satisfação de encontrar soluções elegantes para desafios complexos.
-        Minha stack principal inclui{" "}
-        <span className="font-medium">React, Next.js e Node.js</span>,
-        e também trabalho bem com TypeScript, Prisma e outras ferramentas modernas.
-        Estou sempre aberto a aprender novas tecnologias e atualmente busco uma vaga de{" "}
-        <span className="font-medium">Analista de Sistemas</span>.
+        Sou <span className="font-medium">Analista de Sistemas</span> formado em{" "}
+        <span className="font-medium">Análise e Desenvolvimento de Sistemas</span> pela UNIP,
+        com experiência sólida em desenvolvimento web e gestão de sistemas.
+        Atualmente trabalho na <span className="font-medium">R3 Suprimentos</span>, onde
+        desenvolvo landing pages com <span className="font-medium">Next.js, React e TypeScript</span>,
+        gerencio plataformas CRM como <span className="font-medium">HubSpot</span> e
+        crio automações que otimizam processos empresariais.
+      </p>
+
+      <p className="mb-3">
+        Minha experiência inclui desenvolvimento de{" "}
+        <span className="font-medium">APIs, integrações de sistemas</span> e
+        criação de soluções web responsivas. Tenho conhecimentos sólidos em{" "}
+        <span className="font-medium">banco de dados, metodologias ágeis</span> e
+        ferramentas de infraestrutura. O que mais me motiva é{" "}
+        <span className="italic">transformar ideias em soluções tecnológicas</span> que
+        realmente fazem a diferença no dia a dia das empresas.
       </p>
 
       <p>
-        <span className="italic">Quando não estou codando</span>, gosto de jogar videogames, acompanhar tendências tecnológicas e explorar música criando minhas próprias faixas.
+        Atualmente estou cursando uma{" "}
+        <span className="font-medium">pós-graduação em Desenvolvimento Java</span>,{" "}
+        aprofundando conhecimentos em{" "}
+        <span className="font-medium">Spring Boot, APIs REST e arquitetura de software</span>.
+        <span className="italic"> Além da programação</span>, tenho interesse em
+        inteligência artificial, automação de processos e sempre busco me manter
+        atualizado com as últimas tendências tecnológicas.
       </p>
 
     </motion.section>
