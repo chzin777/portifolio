@@ -15,7 +15,7 @@ const fadeInAnimationVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      delay: 0.05 * index,
+      delay: 0.03 * index,
     },
   }),
 };
@@ -27,13 +27,13 @@ export default function Skills() {
     <section
       id="skills"
       ref={ref}
-      className="mb-28 max-w-[53rem] scroll-mt-28 text-center sm:mb-40"
+      className="mb-20 max-w-[53rem] scroll-mt-28 text-center sm:mb-40 px-4 sm:px-0"
     >
       <SectionHeading>Minhas Skills</SectionHeading>
-      <ul className="flex flex-wrap justify-center gap-2 text-lg text-gray-800">
+      <ul className="flex flex-wrap justify-center gap-2 sm:gap-3 text-sm sm:text-base text-gray-800">
         {skillsData.map((skill, index) => (
           <motion.li
-            className="bg-white borderBlack rounded-xl px-5 py-3 dark:bg-white/10 dark:text-white/80"
+            className="bg-white borderBlack rounded-xl px-4 py-2.5 sm:px-5 sm:py-3 dark:bg-white/10 dark:text-white/80 hover:bg-gray-100 dark:hover:bg-white/20 transition-all duration-200 cursor-default hover:scale-105 hover:shadow-md"
             key={index}
             variants={fadeInAnimationVariants}
             initial="initial"

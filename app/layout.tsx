@@ -9,8 +9,9 @@ import ThemeContextProvider from "@/context/theme-context";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Christofer | Portifólio Pessoal",
-  description: "Christofer, aspirante a Analista de Sistemas",
+  title: "Christofer | Desenvolvedor Full-Stack",
+  description: "Christofer Henrique - Desenvolvedor Full-Stack com experiência em soluções corporativas, APIs REST, DevOps e apps mobile.",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
 };
 
 export default function RootLayout({
