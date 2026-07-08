@@ -22,49 +22,43 @@ export default function About() {
       {/* Key stats */}
       <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-8">
         <div className="p-3 sm:p-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200/50 dark:border-white/10">
-          <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">100+</p>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">API Endpoints</p>
+          <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">600+</p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Endpoints REST</p>
+        </div>
+        <div className="p-3 sm:p-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200/50 dark:border-white/10">
+          <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">10+</p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Projetos entregues</p>
         </div>
         <div className="p-3 sm:p-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200/50 dark:border-white/10">
           <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">3+</p>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Anos de Exp.</p>
-        </div>
-        <div className="p-3 sm:p-4 rounded-xl bg-gray-100 dark:bg-white/5 border border-gray-200/50 dark:border-white/10">
-          <p className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">Full-Stack</p>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Web & Mobile</p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Anos de experiência</p>
         </div>
       </div>
 
-      <div className="text-gray-700 dark:text-white/80 space-y-4 text-sm sm:text-base">
+      <div className="text-gray-700 dark:text-white/80 space-y-4 text-sm sm:text-base text-left sm:text-center">
         <p>
-          Sou <span className="font-medium">Desenvolvedor Full-Stack</span> formado em{" "}
-          <span className="font-medium">Análise e Desenvolvimento de Sistemas</span> pela UNIP,
-          com sólida experiência em soluções corporativas, automação e integrações.
-          Atualmente trabalho na <span className="font-medium">Bluetech Films</span>, onde
-          desenvolvo sistemas de RH e gestão com <span className="font-medium">Next.js, React e TypeScript</span>,
-          crio dashboards operacionais, sistemas de chat em tempo real e{" "}
-          <span className="font-medium">APIs REST com mais de 100 endpoints</span>.
+          Sou <span className="font-semibold text-gray-900 dark:text-white">Desenvolvedor Full-Stack</span> movido
+          por transformar problemas de negócio em software que realmente funciona. Formado em
+          Análise e Desenvolvimento de Sistemas pela <span className="font-medium">UNIP</span> e
+          cursando pós-graduação em Java pela <span className="font-medium">Faculdade Iguaçu</span>.
         </p>
 
         <p>
-          Minha experiência inclui{" "}
-          <span className="font-medium">infraestrutura containerizada com Docker</span>,
-          administração de servidores Linux, gerenciamento de bancos{" "}
-          <span className="font-medium">PostgreSQL, Oracle e Redis</span>, e
-          implementação de soluções como PgBouncer e MinIO. Destaque para o
-          desenvolvimento de um <span className="italic">microsserviço de reconhecimento facial
-          multi-linguagem</span> e um <span className="italic">app mobile Flutter para registro
-          de ponto com reconhecimento facial</span>.
+          Hoje, na <span className="font-semibold text-gray-900 dark:text-white">Bluetech Films</span>, lidero
+          o desenvolvimento de uma plataforma corporativa de RH e ponto eletrônico, do backend em{" "}
+          <span className="font-medium">Next.js com mais de 600 endpoints REST</span> ao{" "}
+          <span className="font-medium">app mobile em Flutter</span>. Trabalho de ponta a ponta: modelo bancos{" "}
+          <span className="font-medium">PostgreSQL, Oracle e Redis</span>, subo infraestrutura com{" "}
+          <span className="font-medium">Docker, Nginx e Cloudflare</span> e conecto tudo com automações em{" "}
+          <span className="font-medium">n8n</span>.
         </p>
 
         <p>
-          Atualmente estou cursando uma{" "}
-          <span className="font-medium">pós-graduação em Desenvolvimento de Sistemas em Java</span>{" "}
-          pela Faculdade Iguaçu EAD. Meu foco é em{" "}
-          <span className="font-medium">escalabilidade, otimização e lógica de programação impecável</span>.
-          <span className="italic"> Além da programação</span>, tenho interesse em
-          DevOps, automação de processos e sempre busco me manter
-          atualizado com as últimas tendências tecnológicas.
+          Entre os projetos que mais me orgulho estão um{" "}
+          <span className="italic">microsserviço de reconhecimento facial</span> e um{" "}
+          <span className="italic">app de ponto biométrico rodando em produção</span>. Meu foco é{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">escalabilidade, código limpo e experiências rápidas e confiáveis</span>.
+          Fora do editor, gosto de explorar DevOps, novas ferramentas de IA e tudo que me ajude a entregar mais com menos.
         </p>
       </div>
     </motion.section>

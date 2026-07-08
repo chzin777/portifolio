@@ -9,6 +9,7 @@ import { HiDownload } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import SplitText from "./SplitText";
 
 
 export default function Intro() {
@@ -74,18 +75,38 @@ export default function Intro() {
         </span>
       </motion.div>
 
-      <motion.h1
-        className="mb-8 sm:mb-10 mt-3 px-2 sm:px-4 text-xl sm:text-2xl md:text-4xl font-medium !leading-[1.5]"
-        initial={{ opacity: 0, y: 100 }}
+      <div className="mt-4 px-2 sm:px-4 flex justify-center">
+        <SplitText
+          text="Olá! Eu sou o Christofer 👋"
+          tag="h1"
+          className="text-2xl sm:text-4xl md:text-5xl font-bold !leading-[1.25] tracking-tight"
+          delay={55}
+          duration={1}
+          ease="power3.out"
+          splitType="chars"
+          from={{ opacity: 0, y: 40 }}
+          to={{ opacity: 1, y: 0 }}
+          threshold={0.1}
+          textAlign="center"
+        />
+      </div>
+
+      <motion.p
+        className="mb-8 sm:mb-10 mt-5 px-2 sm:px-4 text-base sm:text-lg md:text-xl font-medium !leading-[1.6] text-gray-700 dark:text-white/80 max-w-[46rem] mx-auto"
+        initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
+        transition={{ delay: 0.6 }}
       >
-        <span className="font-bold">Oi, eu sou o Christofer.</span> Sou{" "}
-        <span className="font-bold gradient-text">Desenvolvedor Full-Stack</span> com experiência em{" "}
-        <span className="font-bold">soluções corporativas, APIs REST e DevOps</span>. Especializado em{" "}
-        <span className="italic">automação, integrações e apps mobile</span>, com foco em{" "}
-        <span className="underline decoration-gray-400 dark:decoration-gray-500 underline-offset-4">escalabilidade e otimização</span>.
-      </motion.h1>
+        <span className="font-bold gradient-text">Desenvolvedor Full-Stack</span>{" "}
+        que constrói sistemas corporativos de ponta a ponta, de{" "}
+        <span className="font-semibold text-gray-900 dark:text-white">APIs REST escaláveis</span>{" "}
+        e{" "}
+        <span className="font-semibold text-gray-900 dark:text-white">infraestrutura DevOps</span>{" "}
+        a{" "}
+        <span className="italic">apps mobile e automações inteligentes</span>. Transformo
+        processos complexos em produtos{" "}
+        <span className="underline decoration-gray-400 dark:decoration-gray-500 underline-offset-4">rápidos, confiáveis e fáceis de usar</span>.
+      </motion.p>
 
       <motion.div
         className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-2 px-4 text-base sm:text-lg font-medium"
