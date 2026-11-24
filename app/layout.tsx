@@ -11,7 +11,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 export const metadata: Metadata = {
   title: "Christofer Henrique | Desenvolvedor Full Stack Pleno",
   description:
-    "Christofer Henrique — Desenvolvedor Full Stack Pleno. CRMs, integrações com WhatsApp e ERPs, e-commerce e sistemas web com Next.js, Node.js, PostgreSQL e Docker.",
+    "Christofer Henrique, Desenvolvedor Full Stack Pleno. CRMs, integrações com WhatsApp e ERPs, e-commerce e sistemas web com Next.js, Node.js, PostgreSQL e Docker.",
 };
 
 export const viewport: Viewport = {

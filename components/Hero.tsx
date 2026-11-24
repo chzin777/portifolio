@@ -82,7 +82,7 @@ export default function Hero() {
           variants={item}
           className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
         >
-          {profile.role}. Construo CRMs, integrações com WhatsApp e ERPs, e-commerce e sistemas web de ponta a ponta —
+          {profile.role}. Construo CRMs, integrações com WhatsApp e ERPs, e-commerce e sistemas web de ponta a ponta,
           do banco de dados ao deploy em produção.
         </motion.p>
 

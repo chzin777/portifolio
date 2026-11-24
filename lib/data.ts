@@ -34,8 +34,8 @@ export const profile = {
   role: "Desenvolvedor Full Stack Pleno",
   roleEn: "Mid-Level Full Stack Developer",
   education: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
-  school: "UNIP — Universidade Paulista",
-  location: "Goiânia, GO — Brasil",
+  school: "UNIP (Universidade Paulista)",
+  location: "Goiânia, GO, Brasil",
   email: "hchristofer130@gmail.com",
   phone: "(62) 9 9618-3309",
   phoneHref: "tel:+5562996183309",
@@ -76,7 +76,7 @@ export const experiencesData: readonly Experience[] = [
   },
   {
     company: "Avodah Optical",
-    role: "Full Stack Developer — Contrato",
+    role: "Full Stack Developer (Contrato)",
     period: "Atual",
     current: true,
     summary:
@@ -95,7 +95,7 @@ export const experiencesData: readonly Experience[] = [
     current: true,
     url: "https://comply.website",
     summary:
-      "Empresa de desenvolvimento de software sob medida — de landing pages de alta conversão a sistemas web complexos.",
+      "Empresa de desenvolvimento de software sob medida, de landing pages de alta conversão a sistemas web complexos.",
     highlights: [
       "Landing pages com foco em conversão e performance",
       "Sistemas web e SaaS sob medida",

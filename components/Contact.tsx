@@ -32,7 +32,7 @@ export default function Contact() {
                 Vamos construir algo <span className="text-gradient">que vai para produção?</span>
               </h2>
               <p className="mx-auto mt-4 max-w-lg text-zinc-400">
-                Projetos, oportunidades ou uma conversa sobre arquitetura — respondo rápido.
+                Projetos, oportunidades ou uma conversa sobre arquitetura. Respondo rápido.
               </p>
 
               <div className="mt-8 flex justify-center">

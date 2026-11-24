@@ -70,7 +70,7 @@ export default function TechStack() {
         <SectionHeading
           eyebrow="Stack"
           title="Ferramentas que uso em produção."
-          description="Next.js, React e TypeScript no front; Node.js, PostgreSQL e ORMs no back; Docker, Linux VPS, PM2 e Cloudflare na infra — com automações em Bash, Node.js e Python."
+          description="Next.js, React e TypeScript no front; Node.js, PostgreSQL e ORMs no back; Docker, Linux VPS, PM2 e Cloudflare na infra, com automações em Bash, Node.js e Python."
         />
       </div>
 

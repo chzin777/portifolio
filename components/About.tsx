@@ -44,7 +44,7 @@ export default function About() {
                   </h3>
                   <p className="leading-relaxed">
                     Sou <span className="text-zinc-100">{profile.role}</span> e hoje cuido de todo o ecossistema digital
-                    da <span className="text-zinc-100">Óticas Brasil</span> — CRM, automações de marketing, WhatsApp Cloud
+                    da <span className="text-zinc-100">Óticas Brasil</span>: CRM, automações de marketing, WhatsApp Cloud
                     API, integração com o ERP VMSET (Oracle) e o novo e-commerce.
                   </p>
                   <p className="leading-relaxed">
