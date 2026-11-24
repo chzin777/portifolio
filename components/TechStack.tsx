@@ -39,7 +39,7 @@ function MarqueeRow({ items, reverse = false }: { items: readonly Tech[]; revers
     <div className="mask-fade-x group/marquee flex overflow-hidden">
       <ul
         aria-hidden
-        className={`flex w-max shrink-0 gap-3 py-1.5 group-hover/marquee:[animation-play-state:paused] motion-reduce:animate-none ${
+        className={`flex w-max shrink-0 gap-3 py-1.5 will-change-transform group-hover/marquee:[animation-play-state:paused] motion-reduce:animate-none ${
           reverse ? "animate-marquee-reverse" : "animate-marquee"
         }`}
       >

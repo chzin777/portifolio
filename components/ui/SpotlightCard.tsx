@@ -34,35 +34,21 @@ export default function SpotlightCard({
   }
 
   const border = useMotionTemplate`radial-gradient(260px circle at ${x}px ${y}px, rgb(${glow} / 0.65), transparent 70%)`;
-  const surface = useMotionTemplate`radial-gradient(420px circle at ${x}px ${y}px, rgb(${glow} / 0.08), transparent 70%)`;
 
   return (
     <motion.div
       onMouseMove={handleMove}
       whileHover={lift ? { y: -4 } : undefined}
       transition={{ type: "spring", stiffness: 300, damping: 24 }}
-      className={clsx(
-        "group relative rounded-2xl bg-white/10 p-px transition-shadow duration-300 hover:shadow-[0_20px_60px_-30px_rgba(99,102,241,0.45)]",
-        className
-      )}
+      className={clsx("group relative rounded-2xl bg-white/10 p-px", className)}
     >
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{ background: border }}
       />
-      <div
-        className={clsx(
-          "relative h-full overflow-hidden rounded-[15px] bg-ink-900/95 backdrop-blur-sm",
-          innerClassName
-        )}
-      >
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          style={{ background: surface }}
-        />
-        <div className="relative h-full">{children}</div>
+      <div className={clsx("relative h-full overflow-hidden rounded-[15px] bg-ink-900", innerClassName)}>
+        {children}
       </div>
     </motion.div>
   );

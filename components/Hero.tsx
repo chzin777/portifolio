@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionTemplate, useMotionValue, useSpring, type Variants } from "framer-motion";
+import { motion, useMotionValue, useSpring, type Variants } from "framer-motion";
 import type { MouseEvent } from "react";
 import { LuArrowRight, LuDownload } from "react-icons/lu";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
@@ -15,25 +15,26 @@ const container: Variants = {
 };
 
 const item: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(6px)" },
-  show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
+
+const SPOT = 560;
 
 export default function Hero() {
   const { ref } = useSectionInView("Início");
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
-  const mx = useMotionValue(50);
-  const my = useMotionValue(30);
+  // Spotlight movido só por transform (camada de GPU), sem repintar a seção a cada frame.
+  const mx = useMotionValue(-1000);
+  const my = useMotionValue(-1000);
   const sx = useSpring(mx, { stiffness: 80, damping: 20 });
   const sy = useSpring(my, { stiffness: 80, damping: 20 });
-  const spotlight = useMotionTemplate`radial-gradient(520px circle at ${sx}% ${sy}%, rgba(99,102,241,0.16), transparent 65%)`;
-  const gridMask = useMotionTemplate`radial-gradient(420px circle at ${sx}% ${sy}%, black, transparent 75%)`;
 
   function handleMove(e: MouseEvent<HTMLElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
-    mx.set(((e.clientX - rect.left) / rect.width) * 100);
-    my.set(((e.clientY - rect.top) / rect.height) * 100);
+    mx.set(e.clientX - rect.left - SPOT / 2);
+    my.set(e.clientY - rect.top - SPOT / 2);
   }
 
   return (
@@ -43,14 +44,22 @@ export default function Hero() {
       onMouseMove={handleMove}
       className="relative flex min-h-[100svh] scroll-mt-24 items-center overflow-hidden px-5 pb-20 pt-32 sm:px-8"
     >
-      {/* Fundo: grid estático + grid iluminado pelo cursor + aurora */}
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="bg-grid absolute inset-0 opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
-        <motion.div className="bg-grid absolute inset-0 opacity-90" style={{ maskImage: gridMask, WebkitMaskImage: gridMask }} />
-        <motion.div className="absolute inset-0" style={{ background: spotlight }} />
-        <div className="absolute -left-[10%] top-[-20%] h-[38rem] w-[38rem] rounded-full bg-indigo-600/20 blur-[120px] motion-safe:animate-aurora" />
-        <div className="absolute -right-[10%] top-[10%] h-[30rem] w-[30rem] rounded-full bg-cyan-500/10 blur-[120px] motion-safe:animate-aurora [animation-delay:-6s]" />
-        <div className="absolute bottom-[-25%] left-[30%] h-[28rem] w-[28rem] rounded-full bg-emerald-500/10 blur-[120px] motion-safe:animate-aurora [animation-delay:-12s]" />
+      {/* Fundo: grid estático + spotlight que segue o cursor + aurora (gradientes, sem filtro blur) */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="bg-grid absolute inset-0 opacity-50 [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_75%)]" />
+        <motion.div
+          className="absolute left-0 top-0 hidden rounded-full will-change-transform md:block"
+          style={{
+            x: sx,
+            y: sy,
+            width: SPOT,
+            height: SPOT,
+            background: "radial-gradient(circle, rgba(99,102,241,0.18), transparent 65%)",
+          }}
+        />
+        <div className="absolute -left-[15%] top-[-30%] h-[48rem] w-[48rem] rounded-full bg-[radial-gradient(circle,rgba(79,70,229,0.22),transparent_65%)] will-change-transform motion-safe:animate-aurora" />
+        <div className="absolute -right-[15%] top-[0%] h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.12),transparent_65%)]" />
+        <div className="absolute bottom-[-35%] left-[25%] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.1),transparent_65%)]" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950" />
       </div>
 

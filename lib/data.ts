@@ -147,7 +147,7 @@ export const projectsData: readonly Project[] = [
     description:
       "Plataforma corporativa de RH e ponto eletrônico: +600 endpoints REST, reconhecimento facial, push e app Flutter multiplataforma (Web, Mobile, Desktop e TV).",
     tags: ["Next.js", "TypeScript", "Flutter", "PostgreSQL", "Redis", "Docker"],
-    imageUrl: "/people.png",
+    imageUrl: "/projects/people.webp",
     projectUrl: "https://getpeople.valerisapp.com.br",
     featured: true,
   },
@@ -156,7 +156,7 @@ export const projectsData: readonly Project[] = [
     description:
       "SaaS multiempresa para emissão de NF-e e NFC-e no navegador, com certificado A1, SEFAZ, DANFE em PDF e cobrança recorrente via Pix, boleto e cartão.",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "SEFAZ", "Asaas"],
-    imageUrl: "/easynfe.png",
+    imageUrl: "/projects/easynfe.webp",
     projectUrl: "https://www.easynfe.digital",
     featured: true,
   },
@@ -165,7 +165,7 @@ export const projectsData: readonly Project[] = [
     description:
       "Landing page do primeiro cardápio digital em vídeo do Brasil: cada prato ganha um vídeo curto via QR Code. Animações em WebGL e GSAP.",
     tags: ["Next.js", "React 19", "TypeScript", "GSAP", "WebGL"],
-    imageUrl: "/cardamovie.png",
+    imageUrl: "/projects/cardamovie.webp",
     projectUrl: "https://www.cardamovie.com",
   },
   {
@@ -173,7 +173,7 @@ export const projectsData: readonly Project[] = [
     description:
       "Plataforma de casamentos com site personalizado, memórias dos convidados via QR code, fundo de lua de mel e pagamento via Stripe.",
     tags: ["React 19", "TypeScript", "FastAPI", "Supabase", "Stripe"],
-    imageUrl: "/hitched.png",
+    imageUrl: "/projects/hitched.webp",
     projectUrl: "https://hitched.digital",
   },
   {
@@ -181,7 +181,7 @@ export const projectsData: readonly Project[] = [
     description:
       "Landing page de geração de leads com calculadoras trabalhistas gratuitas que qualificam o contato e o levam ao WhatsApp.",
     tags: ["Next.js", "TypeScript", "Tailwind", "Motion", "GSAP"],
-    imageUrl: "/pratica.png",
+    imageUrl: "/projects/pratica.webp",
     projectUrl: "https://praticasolucao.com.br",
   },
   {
@@ -189,14 +189,14 @@ export const projectsData: readonly Project[] = [
     description:
       "Automação que descobre ofertas no Mercado Livre e na Amazon, gera links de afiliado e posta em grupos do WhatsApp, com painel de controle.",
     tags: ["Next.js", "Node.js", "Puppeteer", "whatsapp-web.js", "Docker"],
-    imageUrl: "/promotion.png",
+    imageUrl: "/projects/promotion.webp",
   },
   {
     title: "GN Pré-moldados",
     description:
       "Landing page mobile-first com visualizador 3D interativo das peças, galeria de obras e contato direto via WhatsApp.",
     tags: ["Next.js", "TypeScript", "Three.js", "React Three Fiber"],
-    imageUrl: "/gn.png",
+    imageUrl: "/projects/gn.webp",
     projectUrl: "https://gn-pre-moldados.vercel.app",
   },
   {
@@ -204,7 +204,7 @@ export const projectsData: readonly Project[] = [
     description:
       "Monitoramento de transferências entre filiais integrado ao ERP WinThor via Oracle: status, estoque, etiquetas, KPIs e lead times.",
     tags: ["Next.js", "TypeScript", "Oracle", "WinThor"],
-    imageUrl: "/dash.png",
+    imageUrl: "/projects/dash.webp",
   },
 ] as const;
 

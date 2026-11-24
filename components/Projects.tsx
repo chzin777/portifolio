@@ -24,7 +24,9 @@ function ProjectCard({ project }: { project: Project }) {
             alt={`Prévia do projeto ${project.title}`}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+            loading="lazy"
+            decoding="async"
+            className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.04]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-900/80 via-transparent to-transparent" />
           {project.featured && (

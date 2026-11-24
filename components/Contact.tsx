@@ -25,7 +25,7 @@ export default function Contact() {
       <div className="mx-auto max-w-4xl">
         <Reveal>
           <SpotlightCard lift={false} innerClassName="px-6 py-12 sm:px-12 sm:py-16">
-            <div aria-hidden className="pointer-events-none absolute -top-24 left-1/2 h-48 w-[70%] -translate-x-1/2 rounded-full bg-indigo-500/20 blur-[80px]" />
+            <div aria-hidden className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[80%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(99,102,241,0.22),transparent_65%)]" />
             <div className="relative text-center">
               <p className="font-mono text-xs uppercase tracking-[0.2em] text-indigo-300/80">Contato</p>
               <h2 className="mx-auto mt-3 max-w-xl text-3xl font-semibold tracking-tight text-white sm:text-5xl">
