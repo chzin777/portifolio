@@ -1,20 +1,18 @@
-import About from "@/components/about";
-import Contact from "@/components/contact";
-import Experience from "@/components/experience";
-import Intro from "@/components/intro";
-import Projects from "@/components/projects";
-import SectionDivider from "@/components/section-divider";
-import Skills from "@/components/skills";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
+import TechStack from "@/components/TechStack";
+import Contact from "@/components/Contact";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center px-3 sm:px-4 w-full overflow-x-hidden">
-      <Intro />
-      <SectionDivider />
+    <main className="relative w-full overflow-x-hidden">
+      <Hero />
       <About />
-      <Projects />
-      <Skills />
       <Experience />
+      <Projects />
+      <TechStack />
       <Contact />
     </main>
   );

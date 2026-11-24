@@ -3,10 +3,12 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import type { SectionName } from "./types";
 
-export function useSectionInView(sectionName: SectionName, threshold = 0.75) {
-  const { ref, inView } = useInView({
-    threshold,
-  });
+/**
+ * Marca a seção como ativa quando ela cruza o meio da viewport.
+ * Usa rootMargin em vez de threshold para funcionar com seções mais altas que a tela.
+ */
+export function useSectionInView(sectionName: SectionName) {
+  const { ref, inView } = useInView({ rootMargin: "-45% 0px -50% 0px" });
   const { setActiveSection, timeOfLastClick } = useActiveSectionContext();
 
   useEffect(() => {
@@ -15,7 +17,5 @@ export function useSectionInView(sectionName: SectionName, threshold = 0.75) {
     }
   }, [inView, setActiveSection, timeOfLastClick, sectionName]);
 
-  return {
-    ref,
-  };
+  return { ref };
 }
