@@ -35,7 +35,7 @@ export const en: SiteContent = {
     bio2Middle: "for Avodah Optical and I'm a co-founder of",
     bio2After:
       ", where we build custom software. I like typed code, simple infrastructure and work that actually ships to production.",
-    ctaCv: "Download résumé",
+    ctaCv: "Download CV",
     ctaExperience: "See experience",
     ctaWhatsapp: "Message me on WhatsApp",
     whatsappMessage: "Hi Christofer! I saw your portfolio and would like to talk.",
