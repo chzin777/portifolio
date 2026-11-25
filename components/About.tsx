@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import type { IconType } from "react-icons";
+import { BsWhatsapp } from "react-icons/bs";
 import {
   LuArrowRight,
   LuBriefcase,
@@ -74,7 +75,16 @@ export default function About() {
                   </div>
                 </div>
 
-                <div className="mt-8 flex flex-col gap-3 sm:mt-auto sm:flex-row sm:pt-8">
+                <div className="mt-8 flex flex-col gap-3 sm:mt-auto sm:flex-row sm:flex-wrap sm:pt-8">
+                  <a
+                    href={`${profile.whatsapp}?text=${encodeURIComponent(a.whatsappMessage)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/btn inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-semibold text-ink-950 shadow-[0_0_24px_-6px_rgba(37,211,102,0.7)] transition-transform duration-300 hover:scale-[1.03]"
+                  >
+                    <BsWhatsapp className="text-base" aria-hidden />
+                    {a.ctaWhatsapp}
+                  </a>
                   <a
                     href={profile.cv}
                     download

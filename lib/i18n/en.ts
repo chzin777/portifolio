@@ -37,6 +37,8 @@ export const en: SiteContent = {
       ", where we build custom software. I like typed code, simple infrastructure and work that actually ships to production.",
     ctaCv: "Download résumé",
     ctaExperience: "See experience",
+    ctaWhatsapp: "Message me on WhatsApp",
+    whatsappMessage: "Hi Christofer! I saw your portfolio and would like to talk.",
     available: "Open to offers",
     basedIn: "Based in",
     location: "Goiânia, GO, Brazil",

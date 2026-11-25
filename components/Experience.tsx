@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import clsx from "clsx";
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { LuArrowUpRight, LuCheck } from "react-icons/lu";
 import { experienceBase, techStack } from "@/lib/data";
@@ -60,9 +61,21 @@ export default function Experience() {
                   <div className="p-5 sm:p-7">
                     {/* Cabeçalho */}
                     <div className="flex items-start gap-4">
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[rgb(var(--accent)/0.3)] bg-[rgb(var(--accent)/0.1)] text-sm font-bold tracking-tight text-[rgb(var(--accent))] sm:h-14 sm:w-14 sm:text-base">
-                        {exp.initials}
-                      </span>
+                      {exp.logo ? (
+                        <span className="relative flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-[rgb(var(--accent)/0.35)] bg-white p-1.5 shadow-[0_0_24px_-6px_rgb(var(--accent)/0.6)] sm:h-14 sm:w-14">
+                          <Image
+                            src={exp.logo}
+                            alt={`Logo ${exp.company}`}
+                            width={56}
+                            height={56}
+                            className="h-full w-full object-contain"
+                          />
+                        </span>
+                      ) : (
+                        <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-[rgb(var(--accent)/0.3)] bg-[rgb(var(--accent)/0.1)] text-sm font-bold tracking-tight text-[rgb(var(--accent))] sm:h-14 sm:w-14 sm:text-base">
+                          {exp.initials}
+                        </span>
+                      )}
 
                       <div className="min-w-0 flex-1">
                         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">

@@ -35,6 +35,8 @@ export type SiteContent = {
     bio2After: string;
     ctaCv: string;
     ctaExperience: string;
+    ctaWhatsapp: string;
+    whatsappMessage: string;
     available: string;
     basedIn: string;
     location: string;

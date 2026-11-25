@@ -37,6 +37,8 @@ export const pt: SiteContent = {
       ", onde construímos software sob medida. Gosto de código tipado, infraestrutura simples e entregas que chegam em produção.",
     ctaCv: "Baixar currículo",
     ctaExperience: "Ver experiência",
+    ctaWhatsapp: "Falar no WhatsApp",
+    whatsappMessage: "Olá, Christofer! Vi seu portfólio e gostaria de conversar.",
     available: "Aberto a propostas",
     basedIn: "Baseado em",
     location: "Goiânia, GO, Brasil",

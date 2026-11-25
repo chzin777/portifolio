@@ -34,6 +34,7 @@ export const profile = {
   email: "hchristofer130@gmail.com",
   phone: "(62) 9 9618-3309",
   phoneHref: "tel:+5562996183309",
+  whatsapp: "https://wa.me/5562996183309",
   linkedin: "https://www.linkedin.com/in/christofer-henrique-43366725b/",
   github: "https://github.com/chzin777",
   githubUser: "chzin777",
@@ -47,6 +48,8 @@ export type ExperienceId = (typeof experienceIds)[number];
 export type ExperienceBase = {
   id: ExperienceId;
   company: string;
+  /** logo da empresa em /public/logos (fallback: sigla) */
+  logo?: string;
   /** sigla exibida no "logo" do card */
   initials: string;
   /** cor de destaque do card (rgb sem parênteses) */
@@ -61,6 +64,7 @@ export const experienceBase: readonly ExperienceBase[] = [
     id: "oticas",
     company: "Óticas Brasil",
     initials: "ÓB",
+    logo: "/logos/oticas.png",
     accent: "129 140 248",
     current: true,
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Oracle", "Docker", "WhatsApp API"],
@@ -77,6 +81,7 @@ export const experienceBase: readonly ExperienceBase[] = [
     id: "comply",
     company: "Comply",
     initials: "CO",
+    logo: "/logos/comply.png",
     accent: "52 211 153",
     current: true,
     url: "https://comply.website",
@@ -86,6 +91,7 @@ export const experienceBase: readonly ExperienceBase[] = [
     id: "bluetech",
     company: "Bluetech Window Films",
     initials: "BT",
+    logo: "/logos/bluetech.png",
     accent: "56 189 248",
     current: false,
     tags: ["Next.js", "Flutter", "AWS", "PostgreSQL", "Redis"],
@@ -94,6 +100,7 @@ export const experienceBase: readonly ExperienceBase[] = [
     id: "r3",
     company: "R3 Suprimentos",
     initials: "R3",
+    logo: "/logos/r3.png",
     accent: "251 191 36",
     current: false,
     tags: ["TypeScript", "Next.js", "Oracle", "WinThor"],

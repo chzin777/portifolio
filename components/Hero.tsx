@@ -9,6 +9,7 @@ import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
 import { useLanguage } from "@/context/language-context";
 import CopyEmailButton from "./ui/CopyEmailButton";
+import HeroOrbit from "./HeroOrbit";
 
 const container: Variants = {
   hidden: {},
@@ -33,10 +34,18 @@ export default function Hero() {
   const sx = useSpring(mx, { stiffness: 80, damping: 20 });
   const sy = useSpring(my, { stiffness: 80, damping: 20 });
 
+  // Posição normalizada (-0.5..0.5) para inclinar a cena 3D.
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const tiltX = useSpring(px, { stiffness: 60, damping: 18 });
+  const tiltY = useSpring(py, { stiffness: 60, damping: 18 });
+
   function handleMove(e: MouseEvent<HTMLElement>) {
     const rect = e.currentTarget.getBoundingClientRect();
     mx.set(e.clientX - rect.left - SPOT / 2);
     my.set(e.clientY - rect.top - SPOT / 2);
+    px.set((e.clientX - rect.left) / rect.width - 0.5);
+    py.set((e.clientY - rect.top) / rect.height - 0.5);
   }
 
   return (
@@ -65,11 +74,23 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink-950" />
       </div>
 
+      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-4 lg:grid-cols-[1.05fr_1fr] lg:gap-6">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        className="relative order-first flex h-[330px] items-center justify-center sm:h-[460px] lg:order-last lg:my-0 lg:h-[560px]"
+      >
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.58] sm:scale-[0.8] lg:scale-[0.85] xl:scale-100">
+          <HeroOrbit pointerX={tiltX} pointerY={tiltY} />
+        </div>
+      </motion.div>
+
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto flex w-full max-w-5xl flex-col items-center text-center"
+        className="relative flex w-full flex-col items-center text-center lg:items-start lg:text-left"
       >
         <motion.div variants={item}>
           <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-3.5 py-1.5 text-xs font-medium text-emerald-200 sm:text-sm">
@@ -83,7 +104,7 @@ export default function Hero() {
 
         <motion.h1
           variants={item}
-          className="mt-7 text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
+          className="mt-7 text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-[4.25rem]"
         >
           {profile.name}
           <span className="mt-2 block text-gradient">{t.hero.titleAccent}</span>
@@ -96,7 +117,7 @@ export default function Hero() {
           {t.hero.subtitle}
         </motion.p>
 
-        <motion.div variants={item} className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
+        <motion.div variants={item} className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row lg:justify-start">
           <a
             href="#projects"
             onClick={() => {
@@ -118,7 +139,7 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        <motion.div variants={item} className="mt-6 flex flex-wrap items-center justify-center gap-3">
+        <motion.div variants={item} className="mt-6 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
           <CopyEmailButton showAddress={false} className="!px-4 !py-2.5" />
           <a
             href={profile.linkedin}
@@ -140,6 +161,7 @@ export default function Hero() {
           </a>
         </motion.div>
       </motion.div>
+      </div>
     </section>
   );
 }
