@@ -5,20 +5,25 @@ import { LuArrowUpRight } from "react-icons/lu";
 import type { IconType } from "react-icons";
 import { profile } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
+import { useLanguage } from "@/context/language-context";
 import SpotlightCard from "./ui/SpotlightCard";
 import CopyEmailButton from "./ui/CopyEmailButton";
 import Reveal from "./ui/Reveal";
 
 type ContactLink = { label: string; value: string; href: string; icon: IconType; external: boolean };
 
-const contactLinks: readonly ContactLink[] = [
-  { label: "LinkedIn", value: profile.name, href: profile.linkedin, icon: BsLinkedin, external: true },
-  { label: "GitHub", value: profile.githubUser, href: profile.github, icon: BsGithub, external: true },
-  { label: "Telefone", value: profile.phone, href: profile.phoneHref, icon: BsTelephone, external: false },
-];
+function getContactLinks(phoneLabel: string): readonly ContactLink[] {
+  return [
+    { label: "LinkedIn", value: profile.name, href: profile.linkedin, icon: BsLinkedin, external: true },
+    { label: "GitHub", value: profile.githubUser, href: profile.github, icon: BsGithub, external: true },
+    { label: phoneLabel, value: profile.phone, href: profile.phoneHref, icon: BsTelephone, external: false },
+  ];
+}
 
 export default function Contact() {
-  const { ref } = useSectionInView("Contato");
+  const { ref } = useSectionInView("contact");
+  const { t } = useLanguage();
+  const contactLinks = getContactLinks(t.contact.phone);
 
   return (
     <section ref={ref} id="contact" className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32">
@@ -27,12 +32,12 @@ export default function Contact() {
           <SpotlightCard lift={false} innerClassName="px-6 py-12 sm:px-12 sm:py-16">
             <div aria-hidden className="pointer-events-none absolute -top-24 left-1/2 h-72 w-[80%] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(99,102,241,0.22),transparent_65%)]" />
             <div className="relative text-center">
-              <p className="font-mono text-xs uppercase tracking-[0.2em] text-indigo-300/80">Contato</p>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-indigo-300/80">{t.contact.eyebrow}</p>
               <h2 className="mx-auto mt-3 max-w-xl text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-                Vamos construir algo <span className="text-gradient">que vai para produção?</span>
+                {t.contact.titleBefore} <span className="text-gradient">{t.contact.titleAccent}</span>
               </h2>
               <p className="mx-auto mt-4 max-w-lg text-zinc-400">
-                Projetos, oportunidades ou uma conversa sobre arquitetura. Respondo rápido.
+                {t.contact.description}
               </p>
 
               <div className="mt-8 flex justify-center">

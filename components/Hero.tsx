@@ -7,6 +7,7 @@ import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { profile } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import { useLanguage } from "@/context/language-context";
 import CopyEmailButton from "./ui/CopyEmailButton";
 
 const container: Variants = {
@@ -22,8 +23,9 @@ const item: Variants = {
 const SPOT = 560;
 
 export default function Hero() {
-  const { ref } = useSectionInView("Início");
+  const { ref } = useSectionInView("home");
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+  const { t } = useLanguage();
 
   // Spotlight movido só por transform (camada de GPU), sem repintar a seção a cada frame.
   const mx = useMotionValue(-1000);
@@ -75,7 +77,7 @@ export default function Hero() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 motion-safe:animate-ping" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
             </span>
-            Disponível para novos projetos
+            {t.hero.badge}
           </span>
         </motion.div>
 
@@ -84,27 +86,26 @@ export default function Hero() {
           className="mt-7 text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl"
         >
           {profile.name}
-          <span className="mt-2 block text-gradient">Full Stack Developer.</span>
+          <span className="mt-2 block text-gradient">{t.hero.titleAccent}</span>
         </motion.h1>
 
         <motion.p
           variants={item}
           className="mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg"
         >
-          {profile.role}. Construo CRMs, integrações com WhatsApp e ERPs, e-commerce e sistemas web de ponta a ponta,
-          do banco de dados ao deploy em produção.
+          {t.hero.subtitle}
         </motion.p>
 
         <motion.div variants={item} className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row">
           <a
             href="#projects"
             onClick={() => {
-              setActiveSection("Projetos");
+              setActiveSection("projects");
               setTimeOfLastClick(Date.now());
             }}
             className="group inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-ink-950 transition-transform duration-300 hover:scale-[1.03] active:scale-100 sm:w-auto"
           >
-            Ver projetos
+            {t.hero.ctaProjects}
             <LuArrowRight className="transition-transform duration-300 group-hover:translate-x-1" />
           </a>
           <a
@@ -112,7 +113,7 @@ export default function Hero() {
             download
             className="group inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 py-3 text-sm font-medium text-zinc-200 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
           >
-            Baixar CV
+            {t.hero.ctaCv}
             <LuDownload className="transition-transform duration-300 group-hover:translate-y-0.5" />
           </a>
         </motion.div>

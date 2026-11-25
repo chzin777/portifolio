@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { LuCheck, LuCopy } from "react-icons/lu";
 import clsx from "clsx";
 import { profile } from "@/lib/data";
+import { useLanguage } from "@/context/language-context";
 
 type CopyEmailButtonProps = {
   className?: string;
@@ -12,6 +13,7 @@ type CopyEmailButtonProps = {
 };
 
 export default function CopyEmailButton({ className, showAddress = true }: CopyEmailButtonProps) {
+  const { t } = useLanguage();
   const [copied, setCopied] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -35,7 +37,7 @@ export default function CopyEmailButton({ className, showAddress = true }: CopyE
     <button
       type="button"
       onClick={copy}
-      aria-label={`Copiar e-mail ${profile.email}`}
+      aria-label={`${t.copyEmail.ariaLabel} ${profile.email}`}
       className={clsx(
         "group relative inline-flex items-center gap-3 rounded-full border px-5 py-3 text-sm font-medium transition-colors duration-300",
         copied
@@ -71,7 +73,7 @@ export default function CopyEmailButton({ className, showAddress = true }: CopyE
           )}
         </AnimatePresence>
       </span>
-      <span className="break-all text-left">{showAddress ? profile.email : "Copiar e-mail"}</span>
+      <span className="break-all text-left">{showAddress ? profile.email : t.copyEmail.button}</span>
 
       <AnimatePresence>
         {copied && (
@@ -82,7 +84,7 @@ export default function CopyEmailButton({ className, showAddress = true }: CopyE
             exit={{ opacity: 0, y: 6, x: "-50%" }}
             className="pointer-events-none absolute -top-10 left-1/2 whitespace-nowrap rounded-md border border-emerald-400/30 bg-ink-900 px-2.5 py-1 text-xs text-emerald-300 shadow-lg"
           >
-            E-mail copiado!
+            {t.copyEmail.copied}
           </motion.span>
         )}
       </AnimatePresence>

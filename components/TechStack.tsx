@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { CSSProperties } from "react";
 import { techStack, type Tech } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
+import { useLanguage } from "@/context/language-context";
 import SectionHeading from "./ui/SectionHeading";
 import Reveal from "./ui/Reveal";
 
@@ -61,16 +62,17 @@ function MarqueeRow({ items, reverse = false }: { items: readonly Tech[]; revers
 }
 
 export default function TechStack() {
-  const { ref } = useSectionInView("Stack");
+  const { ref } = useSectionInView("stack");
+  const { t } = useLanguage();
   const half = Math.ceil(techStack.length / 2);
 
   return (
     <section ref={ref} id="stack" className="scroll-mt-24 py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading
-          eyebrow="Stack"
-          title="Ferramentas que uso em produção."
-          description="Next.js, React e TypeScript no front; Node.js, PostgreSQL e ORMs no back; Docker, Linux VPS, PM2 e Cloudflare na infra, com automações em Bash, Node.js e Python."
+          eyebrow={t.stack.eyebrow}
+          title={t.stack.title}
+          description={t.stack.description}
         />
       </div>
 
@@ -81,7 +83,7 @@ export default function TechStack() {
 
       <div className="mx-auto mt-14 max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <ul className="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-9">
+          <ul className="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-10">
             {techStack.map((tech) => (
               <TechTile key={tech.name} tech={tech} />
             ))}

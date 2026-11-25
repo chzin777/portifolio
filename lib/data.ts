@@ -1,3 +1,7 @@
+/**
+ * Dados que NÃO dependem de idioma: links, contatos, tags, imagens e ícones.
+ * Todo texto traduzível fica em lib/i18n (pt.ts e en.ts).
+ */
 import type { IconType } from "react-icons";
 import {
   SiNextdotjs,
@@ -16,24 +20,17 @@ import {
   SiWhatsapp,
   SiOracle,
   SiRedis,
+  SiFlutter,
+  SiDart,
 } from "react-icons/si";
 import { TbDatabaseCog } from "react-icons/tb";
 
-export const links = [
-  { name: "Início", hash: "#home" },
-  { name: "Sobre", hash: "#about" },
-  { name: "Experiência", hash: "#experience" },
-  { name: "Projetos", hash: "#projects" },
-  { name: "Stack", hash: "#stack" },
-  { name: "Contato", hash: "#contact" },
-] as const;
+export const sectionIds = ["home", "about", "experience", "projects", "stack", "contact"] as const;
+export type SectionId = (typeof sectionIds)[number];
 
 export const profile = {
   name: "Christofer Henrique",
   firstName: "Christofer",
-  role: "Desenvolvedor Full Stack Pleno",
-  roleEn: "Mid-Level Full Stack Developer",
-  location: "Goiânia, GO, Brasil",
   email: "hchristofer130@gmail.com",
   phone: "(62) 9 9618-3309",
   phoneHref: "tel:+5562996183309",
@@ -44,165 +41,173 @@ export const profile = {
   photo: "/eu.jpg",
 } as const;
 
-export type Experience = {
+export const experienceIds = ["oticas", "avodah", "comply", "bluetech", "r3"] as const;
+export type ExperienceId = (typeof experienceIds)[number];
+
+export type ExperienceBase = {
+  id: ExperienceId;
   company: string;
-  role: string;
-  period: string;
+  /** sigla exibida no "logo" do card */
+  initials: string;
+  /** cor de destaque do card (rgb sem parênteses) */
+  accent: string;
   current: boolean;
   url?: string;
-  summary: string;
-  highlights: readonly string[];
   tags: readonly string[];
 };
 
-export const experiencesData: readonly Experience[] = [
+export const experienceBase: readonly ExperienceBase[] = [
   {
+    id: "oticas",
     company: "Óticas Brasil",
-    role: "Full Stack Developer",
-    period: "Atual",
+    initials: "ÓB",
+    accent: "129 140 248",
     current: true,
-    summary:
-      "Responsável pelo ecossistema digital da rede: do CRM interno ao novo e-commerce, conectando vendas, atendimento e ERP.",
-    highlights: [
-      "CRM interno com pipeline de vendas, atendimento e IA consultiva",
-      "Automações de marketing e campanhas segmentadas",
-      "Integração com WhatsApp Cloud API",
-      "Integração com o ERP VMSET (Oracle)",
-      "Desenvolvimento do novo e-commerce",
-    ],
     tags: ["Next.js", "TypeScript", "PostgreSQL", "Oracle", "Docker", "WhatsApp API"],
   },
   {
+    id: "avodah",
     company: "Avodah Optical",
-    role: "Full Stack Developer (Contrato)",
-    period: "Atual",
+    initials: "AV",
+    accent: "34 211 238",
     current: true,
-    summary:
-      "Arquitetura e evolução do Avodah SAC, hub modular de atendimento da distribuidora.",
-    highlights: [
-      "Hub de atendimento integrado ao WhatsApp",
-      "CRM de vendas para revendas e representantes",
-      "Ferramentas de marketing e base de conhecimento",
-    ],
     tags: ["Next.js", "React", "TypeScript", "WhatsApp"],
   },
   {
+    id: "comply",
     company: "Comply",
-    role: "Co-founder",
-    period: "Atual",
+    initials: "CO",
+    accent: "52 211 153",
     current: true,
     url: "https://comply.website",
-    summary:
-      "Empresa de desenvolvimento de software sob medida, de landing pages de alta conversão a sistemas web complexos.",
-    highlights: [
-      "Landing pages com foco em conversão e performance",
-      "Sistemas web e SaaS sob medida",
-      "Infraestrutura, deploy e manutenção para clientes",
-    ],
     tags: ["Next.js", "Node.js", "PostgreSQL", "Linux VPS"],
   },
   {
+    id: "bluetech",
     company: "Bluetech Window Films",
-    role: "Full Stack Developer",
-    period: "2025",
+    initials: "BT",
+    accent: "56 189 248",
     current: false,
-    summary:
-      "Sistemas corporativos de RH e gestão, do backend à infraestrutura.",
-    highlights: [
-      "Aplicações React / Next.js",
-      "Microsserviço de reconhecimento facial",
-      "App mobile de ponto em Flutter",
-      "APIs REST na AWS",
-    ],
     tags: ["Next.js", "Flutter", "AWS", "PostgreSQL", "Redis"],
   },
   {
+    id: "r3",
     company: "R3 Suprimentos",
-    role: "Analista de Sistemas & Full Stack Developer",
-    period: "2024",
+    initials: "R3",
+    accent: "251 191 36",
     current: false,
-    summary: "Sistemas web internos e integrações com o ERP.",
-    highlights: [
-      "Sistemas web internos em TypeScript",
-      "Integrações REST com o ERP WinThor",
-    ],
     tags: ["TypeScript", "Next.js", "Oracle", "WinThor"],
   },
 ] as const;
 
-export type Project = {
-  title: string;
-  description: string;
+export const projectIds = [
+  "gaia",
+  "studiomova",
+  "monster",
+  "daps",
+  "bluetech",
+  "people",
+  "easynfe",
+  "comply",
+  "cardamovie",
+  "hitched",
+  "pratica",
+  "integra",
+  "pomerode",
+] as const;
+export type ProjectId = (typeof projectIds)[number];
+
+export type ProjectBase = {
+  id: ProjectId;
   tags: readonly string[];
   imageUrl: string;
   projectUrl?: string;
   featured?: boolean;
 };
 
-export const projectsData: readonly Project[] = [
+export const projectBase: readonly ProjectBase[] = [
   {
-    title: "Valeris People",
-    description:
-      "Plataforma corporativa de RH e ponto eletrônico: +600 endpoints REST, reconhecimento facial, push e app Flutter multiplataforma (Web, Mobile, Desktop e TV).",
+    id: "gaia",
+    tags: ["Next.js", "Landing page", "SEO"],
+    imageUrl: "/projects/gaia.webp",
+    projectUrl: "https://gaia-eletronica.vercel.app",
+    featured: true,
+  },
+  {
+    id: "studiomova",
+    tags: ["Next.js", "TypeScript", "GSAP", "Lenis"],
+    imageUrl: "/projects/studiomova.webp",
+    projectUrl: "https://studiomova.comply.website",
+    featured: true,
+  },
+  {
+    id: "monster",
+    tags: ["React", "Vite", "Landing page"],
+    imageUrl: "/projects/monster.webp",
+    projectUrl: "https://monster.comply.website",
+    featured: true,
+  },
+  {
+    id: "daps",
+    tags: ["React", "Vite", "E-commerce"],
+    imageUrl: "/projects/daps.webp",
+    projectUrl: "https://daps.comply.website",
+    featured: true,
+  },
+  {
+    id: "bluetech",
+    tags: ["React", "Vite", "GSAP"],
+    imageUrl: "/projects/bluetech.webp",
+    projectUrl: "https://parceiros.bluetechfilms.com.br",
+    featured: true,
+  },
+  {
+    id: "people",
     tags: ["Next.js", "TypeScript", "Flutter", "PostgreSQL", "Redis", "Docker"],
     imageUrl: "/projects/people.webp",
     projectUrl: "https://getpeople.valerisapp.com.br",
-    featured: true,
   },
   {
-    title: "Easy-NFe",
-    description:
-      "SaaS multiempresa para emissão de NF-e e NFC-e no navegador, com certificado A1, SEFAZ, DANFE em PDF e cobrança recorrente via Pix, boleto e cartão.",
+    id: "easynfe",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "SEFAZ", "Asaas"],
     imageUrl: "/projects/easynfe.webp",
     projectUrl: "https://www.easynfe.digital",
-    featured: true,
   },
   {
-    title: "CardaMovie",
-    description:
-      "Landing page do primeiro cardápio digital em vídeo do Brasil: cada prato ganha um vídeo curto via QR Code. Animações em WebGL e GSAP.",
+    id: "comply",
+    tags: ["React", "Vite", "Landing page"],
+    imageUrl: "/projects/comply.webp",
+    projectUrl: "https://comply.website",
+  },
+  {
+    id: "cardamovie",
     tags: ["Next.js", "React 19", "TypeScript", "GSAP", "WebGL"],
     imageUrl: "/projects/cardamovie.webp",
     projectUrl: "https://www.cardamovie.com",
   },
   {
-    title: "Hitched",
-    description:
-      "Plataforma de casamentos com site personalizado, memórias dos convidados via QR code, fundo de lua de mel e pagamento via Stripe.",
+    id: "hitched",
     tags: ["React 19", "TypeScript", "FastAPI", "Supabase", "Stripe"],
     imageUrl: "/projects/hitched.webp",
     projectUrl: "https://hitched.digital",
   },
   {
-    title: "Prática Soluções Empresariais",
-    description:
-      "Landing page de geração de leads com calculadoras trabalhistas gratuitas que qualificam o contato e o levam ao WhatsApp.",
+    id: "pratica",
     tags: ["Next.js", "TypeScript", "Tailwind", "Motion", "GSAP"],
     imageUrl: "/projects/pratica.webp",
     projectUrl: "https://praticasolucao.com.br",
   },
   {
-    title: "Promotion Bot",
-    description:
-      "Automação que descobre ofertas no Mercado Livre e na Amazon, gera links de afiliado e posta em grupos do WhatsApp, com painel de controle.",
-    tags: ["Next.js", "Node.js", "Puppeteer", "whatsapp-web.js", "Docker"],
-    imageUrl: "/projects/promotion.webp",
+    id: "integra",
+    tags: ["Next.js", "TypeScript", "GSAP", "Framer Motion"],
+    imageUrl: "/projects/integra.webp",
+    projectUrl: "https://integra-puce.vercel.app",
   },
   {
-    title: "GN Pré-moldados",
-    description:
-      "Landing page mobile-first com visualizador 3D interativo das peças, galeria de obras e contato direto via WhatsApp.",
-    tags: ["Next.js", "TypeScript", "Three.js", "React Three Fiber"],
-    imageUrl: "/projects/gn.webp",
-    projectUrl: "https://gn-pre-moldados.vercel.app",
-  },
-  {
-    title: "Dashboard de Transferências",
-    description:
-      "Monitoramento de transferências entre filiais integrado ao ERP WinThor via Oracle: status, estoque, etiquetas, KPIs e lead times.",
-    tags: ["Next.js", "TypeScript", "Oracle", "WinThor"],
-    imageUrl: "/projects/dash.webp",
+    id: "pomerode",
+    tags: ["React", "Vite", "Landing page"],
+    imageUrl: "/projects/pomerode.webp",
+    projectUrl: "https://pomerode.comply.website",
   },
 ] as const;
 
@@ -217,6 +222,8 @@ export const techStack: readonly Tech[] = [
   { name: "React", icon: SiReact, color: "#61DAFB" },
   { name: "TypeScript", icon: SiTypescript, color: "#3178C6" },
   { name: "Tailwind CSS", icon: SiTailwindcss, color: "#38BDF8" },
+  { name: "Flutter", icon: SiFlutter, color: "#54C5F8" },
+  { name: "Dart", icon: SiDart, color: "#0EA5E9" },
   { name: "Node.js", icon: SiNodedotjs, color: "#5FA04E" },
   { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1" },
   { name: "Prisma", icon: SiPrisma, color: "#5A67D8" },
@@ -230,52 +237,4 @@ export const techStack: readonly Tech[] = [
   { name: "Oracle", icon: SiOracle, color: "#F80000" },
   { name: "Redis", icon: SiRedis, color: "#FF4438" },
   { name: "WhatsApp API", icon: SiWhatsapp, color: "#25D366" },
-] as const;
-
-export const stats = [
-  { value: "+2", label: "anos entregando software em produção" },
-  { value: "+600", label: "endpoints REST em um único produto" },
-  { value: "2", label: "ERPs integrados (VMSET e WinThor)" },
-] as const;
-
-export type Education = {
-  course: string;
-  school: string;
-  period: string;
-  kind: "Graduação" | "Pós-graduação";
-};
-
-export const educationData: readonly Education[] = [
-  {
-    course: "Pós-graduação em Desenvolvimento de Sistemas em Java",
-    school: "Faculdade Iguaçu",
-    period: "2025 a 2026",
-    kind: "Pós-graduação",
-  },
-  {
-    course: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
-    school: "UNIP (Universidade Paulista)",
-    period: "2023 a 2025",
-    kind: "Graduação",
-  },
-] as const;
-
-/** Diferenciais exibidos no "Sobre", pensados para leitura rápida de recrutadores. */
-export const strengths = [
-  {
-    title: "Ponta a ponta",
-    text: "Front, back, banco e infraestrutura. Levo a feature da ideia ao deploy sem depender de outra equipe.",
-  },
-  {
-    title: "Integrações que o negócio usa",
-    text: "WhatsApp Cloud API, ERPs em Oracle (VMSET e WinThor), pagamentos e SEFAZ.",
-  },
-  {
-    title: "Produção de verdade",
-    text: "Sistemas usados todo dia por vendas e atendimento, com Docker, VPS Linux e deploy sem downtime.",
-  },
-  {
-    title: "Visão de produto",
-    text: "Como co-founder da Comply, penso em prazo, custo e resultado para o cliente, não só em código.",
-  },
 ] as const;

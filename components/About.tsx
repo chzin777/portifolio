@@ -14,14 +14,15 @@ import {
   LuServer,
   LuSparkles,
 } from "react-icons/lu";
-import { educationData, experiencesData, profile, stats, strengths, techStack } from "@/lib/data";
+import { experienceBase, profile, techStack } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
 import { useActiveSectionContext } from "@/context/active-section-context";
+import { useLanguage } from "@/context/language-context";
 import SectionHeading from "./ui/SectionHeading";
 import SpotlightCard from "./ui/SpotlightCard";
 import Reveal from "./ui/Reveal";
 
-const currentRoles = experiencesData.filter((exp) => exp.current);
+const currentRoles = experienceBase.filter((exp) => exp.current);
 const coreStack = techStack.slice(0, 10);
 const strengthIcons: readonly IconType[] = [LuLayers, LuPlug, LuServer, LuLightbulb];
 
@@ -29,17 +30,15 @@ const strengthIcons: readonly IconType[] = [LuLayers, LuPlug, LuServer, LuLightb
 const cell = "relative hover:z-10";
 
 export default function About() {
-  const { ref } = useSectionInView("Sobre");
+  const { ref } = useSectionInView("about");
   const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
+  const { t } = useLanguage();
+  const a = t.about;
 
   return (
     <section ref={ref} id="about" className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32">
       <div className="mx-auto max-w-6xl">
-        <SectionHeading
-          eyebrow="Sobre"
-          title="Do banco de dados ao deploy."
-          description="Desenvolvo produtos que resolvem problemas reais de operação: atendimento, vendas, integração com ERPs e automações."
-        />
+        <SectionHeading eyebrow={a.eyebrow} title={a.title} description={a.description} />
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-6">
           {/* Bio + CTAs */}
@@ -59,21 +58,18 @@ export default function About() {
                   <div className="space-y-4 text-zinc-400">
                     <div>
                       <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                        Olá, eu sou o {profile.firstName}.
+                        {a.greeting} {profile.firstName}.
                       </h3>
-                      <p className="mt-1 text-sm text-indigo-200/80">
-                        {profile.role} · Next.js, Node.js e PostgreSQL
-                      </p>
+                      <p className="mt-1 text-sm text-indigo-200/80">{a.tagline}</p>
                     </div>
                     <p className="leading-relaxed">
-                      Hoje cuido de todo o ecossistema digital da <span className="text-zinc-100">Óticas Brasil</span>:
-                      CRM, automações de marketing, WhatsApp Cloud API, integração com o ERP VMSET (Oracle) e o novo
-                      e-commerce.
+                      {a.bio1Before} <span className="text-zinc-100">Óticas Brasil</span>
+                      {a.bio1After}
                     </p>
                     <p className="leading-relaxed">
-                      Em paralelo, evoluo o <span className="text-zinc-100">Avodah SAC</span> para a Avodah Optical e sou
-                      co-fundador da <span className="text-zinc-100">Comply</span>, onde construímos software sob medida.
-                      Gosto de código tipado, infraestrutura simples e entregas que chegam em produção.
+                      {a.bio2Before} <span className="text-zinc-100">Avodah SAC</span> {a.bio2Middle}{" "}
+                      <span className="text-zinc-100">Comply</span>
+                      {a.bio2After}
                     </p>
                   </div>
                 </div>
@@ -84,18 +80,18 @@ export default function About() {
                     download
                     className="group/btn inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink-950 transition-transform duration-300 hover:scale-[1.03]"
                   >
-                    Baixar currículo
+                    {a.ctaCv}
                     <LuDownload className="transition-transform duration-300 group-hover/btn:translate-y-0.5" />
                   </a>
                   <a
                     href="#experience"
                     onClick={() => {
-                      setActiveSection("Experiência");
+                      setActiveSection("experience");
                       setTimeOfLastClick(Date.now());
                     }}
                     className="group/btn inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-zinc-200 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.06]"
                   >
-                    Ver experiência
+                    {a.ctaExperience}
                     <LuArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-1" />
                   </a>
                 </div>
@@ -110,12 +106,14 @@ export default function About() {
                 <LuMapPin className="text-cyan-300" size={20} />
                 <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-2.5 py-1 text-[11px] font-medium text-emerald-200">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                  Aberto a propostas
+                  {a.available}
                 </span>
               </div>
-              <p className="mt-4 text-sm text-zinc-500">Baseado em</p>
-              <p className="text-lg font-semibold tracking-tight text-white">{profile.location}</p>
-              <p className="mt-3 text-sm text-zinc-400">Remoto ou híbrido · {profile.roleEn}</p>
+              <p className="mt-4 text-sm text-zinc-500">{a.basedIn}</p>
+              <p className="text-lg font-semibold tracking-tight text-white">{a.location}</p>
+              <p className="mt-3 text-sm text-zinc-400">
+                {a.workMode} · {a.role}
+              </p>
             </SpotlightCard>
           </Reveal>
 
@@ -123,8 +121,8 @@ export default function About() {
           <Reveal delay={0.1} className={`${cell} md:col-span-2`}>
             <SpotlightCard pop className="h-full" innerClassName="p-6" glow="34 211 238">
               <ul className="grid h-full grid-cols-3 gap-4 md:grid-cols-1 md:gap-3">
-                {stats.map((stat) => (
-                  <li key={stat.label} className="md:flex md:items-baseline md:gap-3">
+                {t.stats.map((stat) => (
+                  <li key={stat.value} className="md:flex md:items-baseline md:gap-3">
                     <p className="text-3xl font-semibold tracking-tight text-gradient md:w-16 md:shrink-0 md:text-2xl">
                       {stat.value}
                     </p>
@@ -140,10 +138,10 @@ export default function About() {
             <SpotlightCard pop className="h-full" innerClassName="p-6" glow="52 211 153">
               <div className="flex items-center gap-2 text-sm text-zinc-500">
                 <LuGraduationCap className="text-emerald-300" size={18} />
-                Formação
+                {a.educationTitle}
               </div>
               <ol className="mt-5 space-y-5 border-l border-white/10 pl-5">
-                {educationData.map((edu) => (
+                {t.education.map((edu) => (
                   <li key={edu.course} className="relative">
                     <span
                       aria-hidden
@@ -168,16 +166,13 @@ export default function About() {
             <SpotlightCard pop className="h-full" innerClassName="p-6">
               <div className="flex items-center gap-2 text-sm text-zinc-500">
                 <LuBriefcase className="text-indigo-300" size={18} />
-                Atuação atual
+                {a.currentTitle}
               </div>
               <ul className="mt-5 space-y-3">
                 {currentRoles.map((exp) => (
-                  <li
-                    key={exp.company}
-                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3"
-                  >
+                  <li key={exp.id} className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3">
                     <p className="font-medium text-white">{exp.company}</p>
-                    <p className="text-sm text-zinc-500">{exp.role}</p>
+                    <p className="text-sm text-zinc-500">{t.experience.items[exp.id].role}</p>
                   </li>
                 ))}
               </ul>
@@ -189,10 +184,10 @@ export default function About() {
             <SpotlightCard pop className="h-full" innerClassName="p-6 sm:p-8">
               <div className="flex items-center gap-2 text-sm text-zinc-500">
                 <LuSparkles className="text-indigo-300" />
-                Por que me chamar para o time
+                {a.strengthsTitle}
               </div>
               <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                {strengths.map((item, i) => {
+                {t.strengths.map((item, i) => {
                   const Icon = strengthIcons[i] ?? LuSparkles;
                   return (
                     <li key={item.title}>
@@ -214,7 +209,7 @@ export default function About() {
               <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                 <div className="flex shrink-0 items-center gap-2 text-sm text-zinc-500">
                   <LuLayers className="text-emerald-300" />
-                  Stack do dia a dia
+                  {a.stackTitle}
                 </div>
                 <ul className="flex flex-wrap gap-2 lg:justify-end">
                   {coreStack.map(({ name, icon: Icon, color }) => (
