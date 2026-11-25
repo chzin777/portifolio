@@ -11,6 +11,8 @@ type SpotlightCardProps = {
   /** cor do brilho (rgb sem parênteses, ex.: "129 140 248") */
   glow?: string;
   lift?: boolean;
+  /** "salta para frente" no hover: sobe, cresce um pouco e ganha sombra */
+  pop?: boolean;
 };
 
 /**
@@ -23,6 +25,7 @@ export default function SpotlightCard({
   innerClassName,
   glow = "129 140 248",
   lift = true,
+  pop = false,
 }: SpotlightCardProps) {
   const x = useMotionValue(-400);
   const y = useMotionValue(-400);
@@ -38,9 +41,14 @@ export default function SpotlightCard({
   return (
     <motion.div
       onMouseMove={handleMove}
-      whileHover={lift ? { y: -4 } : undefined}
-      transition={{ type: "spring", stiffness: 300, damping: 24 }}
-      className={clsx("group relative rounded-2xl bg-white/10 p-px", className)}
+      whileHover={pop ? { y: -10, scale: 1.035 } : lift ? { y: -4 } : undefined}
+      transition={{ type: "spring", stiffness: 320, damping: 22 }}
+      className={clsx(
+        "group relative rounded-2xl bg-white/10 p-px",
+        pop &&
+          "hover:z-10 hover:shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.06)]",
+        className
+      )}
     >
       <motion.div
         aria-hidden

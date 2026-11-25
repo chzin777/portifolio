@@ -1,18 +1,36 @@
 "use client";
 
 import Image from "next/image";
-import { LuGraduationCap, LuMapPin, LuSparkles, LuLayers } from "react-icons/lu";
-import { experiencesData, profile, stats, techStack } from "@/lib/data";
+import type { IconType } from "react-icons";
+import {
+  LuArrowRight,
+  LuBriefcase,
+  LuDownload,
+  LuGraduationCap,
+  LuLayers,
+  LuLightbulb,
+  LuMapPin,
+  LuPlug,
+  LuServer,
+  LuSparkles,
+} from "react-icons/lu";
+import { educationData, experiencesData, profile, stats, strengths, techStack } from "@/lib/data";
 import { useSectionInView } from "@/lib/hooks";
+import { useActiveSectionContext } from "@/context/active-section-context";
 import SectionHeading from "./ui/SectionHeading";
 import SpotlightCard from "./ui/SpotlightCard";
 import Reveal from "./ui/Reveal";
 
 const currentRoles = experiencesData.filter((exp) => exp.current);
-const coreStack = techStack.slice(0, 8);
+const coreStack = techStack.slice(0, 10);
+const strengthIcons: readonly IconType[] = [LuLayers, LuPlug, LuServer, LuLightbulb];
+
+/** Wrapper de cada célula do bento: sobe de camada no hover para o card "saltar" por cima dos vizinhos. */
+const cell = "relative hover:z-10";
 
 export default function About() {
   const { ref } = useSectionInView("Sobre");
+  const { setActiveSection, setTimeOfLastClick } = useActiveSectionContext();
 
   return (
     <section ref={ref} id="about" className="scroll-mt-24 px-5 py-24 sm:px-8 sm:py-32">
@@ -23,101 +41,182 @@ export default function About() {
           description="Desenvolvo produtos que resolvem problemas reais de operação: atendimento, vendas, integração com ERPs e automações."
         />
 
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-6 md:auto-rows-auto">
-          {/* Bio */}
-          <Reveal className="md:col-span-4 md:row-span-2">
-            <SpotlightCard className="h-full" innerClassName="p-6 sm:p-8">
-              <div className="flex h-full flex-col gap-6 sm:flex-row sm:items-start">
-                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-white/10 sm:h-28 sm:w-28">
-                  <Image
-                    src={profile.photo}
-                    alt={profile.name}
-                    fill
-                    sizes="112px"
-                    priority
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-6">
+          {/* Bio + CTAs */}
+          <Reveal className={`${cell} md:col-span-4 md:row-span-2`}>
+            <SpotlightCard pop className="h-full" innerClassName="p-6 sm:p-8">
+              <div className="flex h-full flex-col">
+                <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+                  <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl border border-white/10 sm:h-28 sm:w-28">
+                    <Image
+                      src={profile.photo}
+                      alt={profile.name}
+                      fill
+                      sizes="112px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="space-y-4 text-zinc-400">
+                    <div>
+                      <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
+                        Olá, eu sou o {profile.firstName}.
+                      </h3>
+                      <p className="mt-1 text-sm text-indigo-200/80">
+                        {profile.role} · Next.js, Node.js e PostgreSQL
+                      </p>
+                    </div>
+                    <p className="leading-relaxed">
+                      Hoje cuido de todo o ecossistema digital da <span className="text-zinc-100">Óticas Brasil</span>:
+                      CRM, automações de marketing, WhatsApp Cloud API, integração com o ERP VMSET (Oracle) e o novo
+                      e-commerce.
+                    </p>
+                    <p className="leading-relaxed">
+                      Em paralelo, evoluo o <span className="text-zinc-100">Avodah SAC</span> para a Avodah Optical e sou
+                      co-fundador da <span className="text-zinc-100">Comply</span>, onde construímos software sob medida.
+                      Gosto de código tipado, infraestrutura simples e entregas que chegam em produção.
+                    </p>
+                  </div>
                 </div>
-                <div className="space-y-4 text-zinc-400">
-                  <h3 className="text-xl font-semibold tracking-tight text-white sm:text-2xl">
-                    Olá, eu sou o {profile.firstName}.
-                  </h3>
-                  <p className="leading-relaxed">
-                    Sou <span className="text-zinc-100">{profile.role}</span> e hoje cuido de todo o ecossistema digital
-                    da <span className="text-zinc-100">Óticas Brasil</span>: CRM, automações de marketing, WhatsApp Cloud
-                    API, integração com o ERP VMSET (Oracle) e o novo e-commerce.
-                  </p>
-                  <p className="leading-relaxed">
-                    Em paralelo, evoluo o <span className="text-zinc-100">Avodah SAC</span> para a Avodah Optical e sou
-                    co-fundador da <span className="text-zinc-100">Comply</span>, onde construímos software sob medida.
-                    Gosto de código tipado, infraestrutura simples e entregas que chegam em produção.
-                  </p>
+
+                <div className="mt-8 flex flex-col gap-3 sm:mt-auto sm:flex-row sm:pt-8">
+                  <a
+                    href={profile.cv}
+                    download
+                    className="group/btn inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-ink-950 transition-transform duration-300 hover:scale-[1.03]"
+                  >
+                    Baixar currículo
+                    <LuDownload className="transition-transform duration-300 group-hover/btn:translate-y-0.5" />
+                  </a>
+                  <a
+                    href="#experience"
+                    onClick={() => {
+                      setActiveSection("Experiência");
+                      setTimeOfLastClick(Date.now());
+                    }}
+                    className="group/btn inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5 text-sm font-medium text-zinc-200 transition-colors duration-300 hover:border-white/20 hover:bg-white/[0.06]"
+                  >
+                    Ver experiência
+                    <LuArrowRight className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </a>
                 </div>
               </div>
             </SpotlightCard>
           </Reveal>
 
-          {/* Localização + cargo */}
-          <Reveal delay={0.05} className="md:col-span-2">
-            <SpotlightCard className="h-full" innerClassName="p-6" glow="34 211 238">
-              <LuMapPin className="text-cyan-300" size={20} />
+          {/* Disponibilidade */}
+          <Reveal delay={0.05} className={`${cell} md:col-span-2`}>
+            <SpotlightCard pop className="h-full" innerClassName="p-6" glow="52 211 153">
+              <div className="flex items-center justify-between">
+                <LuMapPin className="text-cyan-300" size={20} />
+                <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/[0.06] px-2.5 py-1 text-[11px] font-medium text-emerald-200">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                  Aberto a propostas
+                </span>
+              </div>
               <p className="mt-4 text-sm text-zinc-500">Baseado em</p>
               <p className="text-lg font-semibold tracking-tight text-white">{profile.location}</p>
               <p className="mt-3 text-sm text-zinc-400">Remoto ou híbrido · {profile.roleEn}</p>
             </SpotlightCard>
           </Reveal>
 
-          {/* Formação */}
-          <Reveal delay={0.1} className="md:col-span-2">
-            <SpotlightCard className="h-full" innerClassName="p-6" glow="52 211 153">
-              <LuGraduationCap className="text-emerald-300" size={22} />
-              <p className="mt-4 text-sm text-zinc-500">Formação</p>
-              <p className="text-lg font-semibold leading-snug tracking-tight text-white">{profile.education}</p>
-              <p className="mt-2 text-sm text-zinc-400">{profile.school}</p>
-            </SpotlightCard>
-          </Reveal>
-
-          {/* Atuação atual */}
-          <Reveal delay={0.05} className="md:col-span-3">
-            <SpotlightCard className="h-full" innerClassName="p-6">
-              <div className="flex items-center gap-2 text-sm text-zinc-500">
-                <LuSparkles className="text-indigo-300" />
-                Atuação atual
-              </div>
-              <ul className="mt-4 space-y-3">
-                {currentRoles.map((exp) => (
-                  <li key={exp.company} className="flex items-center justify-between gap-3">
-                    <span className="font-medium text-white">{exp.company}</span>
-                    <span className="truncate text-right text-sm text-zinc-500">{exp.role}</span>
+          {/* Números */}
+          <Reveal delay={0.1} className={`${cell} md:col-span-2`}>
+            <SpotlightCard pop className="h-full" innerClassName="p-6" glow="34 211 238">
+              <ul className="grid h-full grid-cols-3 gap-4 md:grid-cols-1 md:gap-3">
+                {stats.map((stat) => (
+                  <li key={stat.label} className="md:flex md:items-baseline md:gap-3">
+                    <p className="text-3xl font-semibold tracking-tight text-gradient md:w-16 md:shrink-0 md:text-2xl">
+                      {stat.value}
+                    </p>
+                    <p className="mt-1 text-xs leading-snug text-zinc-500 sm:text-sm md:mt-0">{stat.label}</p>
                   </li>
                 ))}
               </ul>
             </SpotlightCard>
           </Reveal>
 
-          {/* Números */}
-          <Reveal delay={0.1} className="md:col-span-3">
-            <SpotlightCard className="h-full" innerClassName="p-6" glow="34 211 238">
-              <div className="grid h-full grid-cols-3 gap-4">
-                {stats.map((stat) => (
-                  <div key={stat.label} className="flex flex-col justify-start">
-                    <p className="text-3xl font-semibold tracking-tight text-gradient sm:text-4xl">{stat.value}</p>
-                    <p className="mt-1 text-xs leading-snug text-zinc-500 sm:text-sm">{stat.label}</p>
-                  </div>
-                ))}
+          {/* Formação */}
+          <Reveal delay={0.05} className={`${cell} md:col-span-3`}>
+            <SpotlightCard pop className="h-full" innerClassName="p-6" glow="52 211 153">
+              <div className="flex items-center gap-2 text-sm text-zinc-500">
+                <LuGraduationCap className="text-emerald-300" size={18} />
+                Formação
               </div>
+              <ol className="mt-5 space-y-5 border-l border-white/10 pl-5">
+                {educationData.map((edu) => (
+                  <li key={edu.course} className="relative">
+                    <span
+                      aria-hidden
+                      className="absolute -left-[25px] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-emerald-400 bg-ink-900"
+                    />
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span className="rounded-md bg-emerald-400/10 px-2 py-0.5 text-[11px] font-medium text-emerald-200">
+                        {edu.kind}
+                      </span>
+                      <span className="font-mono text-xs text-zinc-500">{edu.period}</span>
+                    </div>
+                    <p className="mt-2 font-semibold leading-snug tracking-tight text-white">{edu.course}</p>
+                    <p className="text-sm text-zinc-400">{edu.school}</p>
+                  </li>
+                ))}
+              </ol>
+            </SpotlightCard>
+          </Reveal>
+
+          {/* Atuação atual */}
+          <Reveal delay={0.1} className={`${cell} md:col-span-3`}>
+            <SpotlightCard pop className="h-full" innerClassName="p-6">
+              <div className="flex items-center gap-2 text-sm text-zinc-500">
+                <LuBriefcase className="text-indigo-300" size={18} />
+                Atuação atual
+              </div>
+              <ul className="mt-5 space-y-3">
+                {currentRoles.map((exp) => (
+                  <li
+                    key={exp.company}
+                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] px-4 py-3"
+                  >
+                    <p className="font-medium text-white">{exp.company}</p>
+                    <p className="text-sm text-zinc-500">{exp.role}</p>
+                  </li>
+                ))}
+              </ul>
+            </SpotlightCard>
+          </Reveal>
+
+          {/* Diferenciais */}
+          <Reveal delay={0.05} className={`${cell} md:col-span-6`}>
+            <SpotlightCard pop className="h-full" innerClassName="p-6 sm:p-8">
+              <div className="flex items-center gap-2 text-sm text-zinc-500">
+                <LuSparkles className="text-indigo-300" />
+                Por que me chamar para o time
+              </div>
+              <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {strengths.map((item, i) => {
+                  const Icon = strengthIcons[i] ?? LuSparkles;
+                  return (
+                    <li key={item.title}>
+                      <span className="inline-flex rounded-lg border border-white/10 bg-white/[0.04] p-2 text-indigo-200">
+                        <Icon size={18} aria-hidden />
+                      </span>
+                      <p className="mt-3 font-semibold tracking-tight text-white">{item.title}</p>
+                      <p className="mt-1 text-sm leading-relaxed text-zinc-400">{item.text}</p>
+                    </li>
+                  );
+                })}
+              </ul>
             </SpotlightCard>
           </Reveal>
 
           {/* Stack principal */}
-          <Reveal delay={0.05} className="md:col-span-6">
-            <SpotlightCard className="h-full" innerClassName="p-6" glow="52 211 153" lift={false}>
-              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center gap-2 text-sm text-zinc-500">
+          <Reveal delay={0.05} className={`${cell} md:col-span-6`}>
+            <SpotlightCard pop className="h-full" innerClassName="p-6" glow="52 211 153">
+              <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex shrink-0 items-center gap-2 text-sm text-zinc-500">
                   <LuLayers className="text-emerald-300" />
                   Stack do dia a dia
                 </div>
-                <ul className="flex flex-wrap gap-2">
+                <ul className="flex flex-wrap gap-2 lg:justify-end">
                   {coreStack.map(({ name, icon: Icon, color }) => (
                     <li
                       key={name}

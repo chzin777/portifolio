@@ -33,8 +33,6 @@ export const profile = {
   firstName: "Christofer",
   role: "Desenvolvedor Full Stack Pleno",
   roleEn: "Mid-Level Full Stack Developer",
-  education: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
-  school: "UNIP (Universidade Paulista)",
   location: "Goiânia, GO, Brasil",
   email: "hchristofer130@gmail.com",
   phone: "(62) 9 9618-3309",
@@ -235,7 +233,49 @@ export const techStack: readonly Tech[] = [
 ] as const;
 
 export const stats = [
-  { value: "3", label: "frentes ativas hoje" },
+  { value: "+2", label: "anos entregando software em produção" },
   { value: "+600", label: "endpoints REST em um único produto" },
   { value: "2", label: "ERPs integrados (VMSET e WinThor)" },
+] as const;
+
+export type Education = {
+  course: string;
+  school: string;
+  period: string;
+  kind: "Graduação" | "Pós-graduação";
+};
+
+export const educationData: readonly Education[] = [
+  {
+    course: "Pós-graduação em Desenvolvimento de Sistemas em Java",
+    school: "Faculdade Iguaçu",
+    period: "2025 a 2026",
+    kind: "Pós-graduação",
+  },
+  {
+    course: "Tecnólogo em Análise e Desenvolvimento de Sistemas",
+    school: "UNIP (Universidade Paulista)",
+    period: "2023 a 2025",
+    kind: "Graduação",
+  },
+] as const;
+
+/** Diferenciais exibidos no "Sobre", pensados para leitura rápida de recrutadores. */
+export const strengths = [
+  {
+    title: "Ponta a ponta",
+    text: "Front, back, banco e infraestrutura. Levo a feature da ideia ao deploy sem depender de outra equipe.",
+  },
+  {
+    title: "Integrações que o negócio usa",
+    text: "WhatsApp Cloud API, ERPs em Oracle (VMSET e WinThor), pagamentos e SEFAZ.",
+  },
+  {
+    title: "Produção de verdade",
+    text: "Sistemas usados todo dia por vendas e atendimento, com Docker, VPS Linux e deploy sem downtime.",
+  },
+  {
+    title: "Visão de produto",
+    text: "Como co-founder da Comply, penso em prazo, custo e resultado para o cliente, não só em código.",
+  },
 ] as const;
